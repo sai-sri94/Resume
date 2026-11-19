@@ -1,0 +1,142 @@
+/* Architectural Grid & Subtle Film Grain */
+.bg-arch-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(ellipse 88% 70% at 50% 15%, #000 35%, transparent 100%);
+  mask-image: radial-gradient(ellipse 88% 70% at 50% 15%, #000 35%, transparent 100%);
+}
+
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.text-balance { text-wrap: balance; }
+.text-pretty { text-wrap: pretty; }
+
+/* Luminous Hero Headline Gradient */
+.hero-gradient-text {
+  background: linear-gradient(95deg, #FFFFFF 0%, #CBD5E1 65%, #38BDF8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Machined Obsidian Glass Surface + 3D Perspective Tilt */
+.tilt-card {
+  background-color: #0B101B;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
+    0 14px 36px -14px rgba(0, 0, 0, 0.75);
+  transform-style: preserve-3d;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    360px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(34, 211, 238, 0.15),
+    rgba(59, 130, 246, 0.04) 45%,
+    transparent 80%
+  );
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (hover: hover) {
+  .spotlight-card:hover::before {
+    opacity: 1;
+  }
+  .tilt-card:hover {
+    border-color: rgba(34, 211, 238, 0.38);
+  }
+}
+
+.spotlight-card.touch-lit::before,
+.spotlight-card.scroll-lit::before {
+  opacity: 1;
+}
+
+.spotlight-card.scroll-lit {
+  border-color: rgba(34, 211, 238, 0.38);
+}
+
+.magnetic-el {
+  will-change: transform;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Smooth Multi-View Entrance Animation */
+.view-panel {
+  animation: viewReveal 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes viewReveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reduced Motion Respect */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Complete Multi-Chapter ATS Print / Save Resume PDF Mode */
+@media print {
+  .no-print, #cursor-aura, #cursor-ring, #cursor-dot, .bg-arch-grid, .bg-noise {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+  }
+  main {
+    padding-top: 0 !important;
+  }
+  .view-panel {
+    display: block !important;
+    opacity: 1 !important;
+    transform: none !important;
+    margin-bottom: 2rem !important;
+    page-break-inside: avoid;
+  }
+  .hero-gradient-text {
+    background: none !important;
+    -webkit-text-fill-color: #0f172a !important;
+    color: #0f172a !important;
+  }
+  .tilt-card {
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+  .text-white, .text-slate-200, .text-slate-300, .text-slate-400 {
+    color: #1e293b !important;
+  }
+}
