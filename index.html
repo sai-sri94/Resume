@@ -1,620 +1,604 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="dark scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-  <title>Vijjapurapu Sai Srikanth — Endpoint Security & EDR Specialist</title>
-  <meta name="description" content="Cybersecurity Professional Services Engineer & EDR Specialist with 4.5+ years securing 6,000+ hybrid enterprise endpoints across 10+ client fleets. M.Tech in Cyber Security (NFSU)." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Vijjapurapu Sai Srikanth — Endpoint Security Engineer &amp; EDR Specialist</title>
+  <meta name="description" content="Vijjapurapu Sai Srikanth — Endpoint Security Engineer, Cybersecurity Professional Services Consultant, and EDR Specialist with 4.5+ years securing 6,000+ hybrid endpoints across 10+ enterprise fleets." />
+  <meta property="og:title" content="Vijjapurapu Sai Srikanth — EDR &amp; Endpoint Security Specialist" />
+  <meta property="og:description" content="6,000+ hybrid endpoints secured across 10+ enterprise fleets | Cyber 2.0 EDR, SMB protection, MD5/VirusTotal triage, SIEM log forwarding &amp; L2/L3 incident response." />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Vijjapurapu Sai Srikanth — Endpoint Security & EDR Specialist" />
-  <meta property="og:description" content="4.5+ years securing 6,000+ hybrid enterprise endpoints across 10+ client fleets. Cyber 2.0 EDR, SMB Zero-Day Policy, Client SIEM IP/Port Forwarding, and L2/L3 RCA." />
-  <meta property="og:image" content="/avatar.png" />
-  <link rel="icon" type="image/png" href="/avatar.png" />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./src/styles.css" />
-
   <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Geist"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-            mono: ['"Geist Mono"', 'monospace'],
-          }
-        }
-      }
-    }
+            sans: ['Geist', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            mono: ['Geist Mono', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+          },
+          colors: {
+            obsidian: '#05070D',
+            surface: '#0A0F1A',
+            panel: '#0E1524',
+            cyanpulse: '#22D3EE',
+            cyanbright: '#67E8F9',
+            indigoedge: '#6366F1',
+          },
+        },
+      },
+    };
   </script>
+  <link rel="stylesheet" href="./src/styles.css" />
 </head>
-<body class="bg-[#05070D] text-slate-200 font-sans antialiased overflow-x-hidden selection:bg-cyan-400 selection:text-slate-950">
+<body class="bg-obsidian text-slate-100 font-sans antialiased selection:bg-cyan-400/20 selection:text-cyan-200 overflow-x-hidden pb-24 lg:pb-10">
+  <!-- Living Endpoint Telemetry Canvas & Atmospheric Depth -->
+  <canvas id="telemetry-canvas" aria-hidden="true"></canvas>
+  <div class="ambient-atmosphere" aria-hidden="true"></div>
+  <div class="noise-layer" aria-hidden="true"></div>
 
-  <!-- Keyboard Skip Link -->
-  <a href="#workspace-stage" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:bg-cyan-400 focus:text-slate-950 focus:font-semibold">
-    Skip to portfolio workspace
-  </a>
+  <!-- Desktop Custom Dual-Layer Cursor -->
+  <div id="cursor-dot" class="cursor-dot hidden md:block" aria-hidden="true"></div>
+  <div id="cursor-ring" class="cursor-ring hidden md:block" aria-hidden="true"></div>
 
-  <!-- Atmospheric Obsidian + Cyan/Cobalt Stage Background -->
-  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden no-print">
-    <div class="bg-arch-grid absolute inset-0"></div>
-    <div class="bg-noise absolute inset-0 opacity-[0.03]"></div>
-    <div class="absolute -top-44 left-1/2 -translate-x-1/2 w-[920px] h-[440px] rounded-full bg-cyan-500/[0.09] blur-[145px]"></div>
-    <div class="absolute top-1/2 -left-44 w-[520px] h-[520px] rounded-full bg-blue-600/[0.07] blur-[150px]"></div>
-    <div class="absolute bottom-0 right-0 w-[480px] h-[420px] rounded-full bg-cyan-400/[0.05] blur-[140px]"></div>
-  </div>
-
-  <!-- Desktop Dual-Layer Cursor Choreography -->
-  <div id="cursor-ring" class="pointer-events-none fixed top-0 left-0 w-10 h-10 rounded-full border border-cyan-400/50 bg-cyan-400/[0.04] -translate-x-1/2 -translate-y-1/2 z-50 opacity-0 hidden md:block no-print"></div>
-  <div id="cursor-dot" class="pointer-events-none fixed top-0 left-0 w-1.5 h-1.5 rounded-full bg-cyan-300 shadow-[0_0_10px_#22D3EE] -translate-x-1/2 -translate-y-1/2 z-50 opacity-0 hidden md:block no-print"></div>
-  <div id="cursor-aura" class="pointer-events-none fixed top-0 left-0 w-[460px] h-[460px] rounded-full -translate-x-1/2 -translate-y-1/2 z-0 opacity-0 hidden md:block no-print"
-       style="background: radial-gradient(circle, rgba(34,211,238,0.085) 0%, rgba(59,130,246,0.03) 45%, transparent 72%);"></div>
-
-  <!-- Calm System Toast -->
-  <div id="copy-toast" role="status" aria-live="polite" class="fixed top-20 right-4 sm:right-8 z-50 -translate-y-4 opacity-0 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] px-4 py-2.5 rounded-xl bg-[#0B101B]/95 backdrop-blur-xl border border-cyan-400/30 text-slate-100 text-xs font-medium shadow-2xl flex items-center gap-2.5 no-print">
-    <span class="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34D399]"></span>
-    <span id="copy-toast-text">Copied to clipboard</span>
-  </div>
-
-  <!-- Floating Command Capsule Header -->
-  <header class="fixed top-4 inset-x-0 z-40 flex justify-center px-4 no-print">
-    <nav aria-label="Portfolio chapter navigation" class="w-full max-w-6xl h-14 px-4 sm:px-5 rounded-2xl bg-[#0B101B]/80 backdrop-blur-xl border border-white/[0.09] shadow-2xl flex items-center justify-between gap-3">
-      <button data-view-target="overview" class="view-nav-trigger flex items-center gap-2.5 shrink-0 text-left group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-lg">
-        <span class="h-8 w-8 rounded-lg bg-cyan-400/10 border border-cyan-400/35 text-cyan-300 font-mono font-semibold flex items-center justify-center text-xs group-hover:border-cyan-400 transition">
+  <!-- Top Frosted Glass Bar -->
+  <header id="site-header" class="no-print sticky top-3 z-40 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="apple-glass rounded-2xl px-4 h-14 flex items-center justify-between gap-3">
+      <a href="#overview" data-section="overview" class="section-link group flex items-center gap-2.5 min-w-0">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400/25 via-slate-900/80 to-indigo-500/25 border border-cyan-300/35 flex items-center justify-center font-mono text-xs font-semibold text-cyan-200 shrink-0">
           VS
-        </span>
-        <span class="text-sm font-medium text-white hidden sm:inline">Vijjapurapu Sai Srikanth</span>
-        <span class="text-sm font-medium text-white sm:hidden">Sai Srikanth</span>
-      </button>
+        </div>
+        <span class="text-sm font-semibold tracking-tight text-white truncate">Vijjapurapu Sai Srikanth</span>
+      </a>
 
-      <!-- Desktop 4-Chapter Switcher -->
-      <div role="tablist" aria-label="Portfolio sections" class="hidden md:flex items-center gap-1 p-1 rounded-xl bg-white/[0.03] border border-white/[0.06]">
-        <button role="tab" data-view="overview" class="view-tab px-3 py-1.5 rounded-lg text-xs font-medium transition">01. Overview</button>
-        <button role="tab" data-view="experience" class="view-tab px-3 py-1.5 rounded-lg text-xs font-medium transition">02. Experience</button>
-        <button role="tab" data-view="skills" class="view-tab px-3 py-1.5 rounded-lg text-xs font-medium transition">03. Skills &amp; Labs</button>
-        <button role="tab" data-view="credentials" class="view-tab px-3 py-1.5 rounded-lg text-xs font-medium transition">04. Credentials &amp; Growth</button>
-      </div>
+      <!-- Desktop Inline Chapter Pills -->
+      <nav aria-label="Section Quick Jump" class="hidden lg:flex items-center gap-1 text-xs">
+        <a href="#overview" data-section="overview" class="top-nav-pill active px-3 py-1.5 rounded-xl font-medium transition-all">01. Overview</a>
+        <a href="#experience" data-section="experience" class="top-nav-pill px-3 py-1.5 rounded-xl font-medium transition-all">02. Experience</a>
+        <a href="#skills" data-section="skills" class="top-nav-pill px-3 py-1.5 rounded-xl font-medium transition-all">03. Skills &amp; Labs</a>
+        <a href="#credentials" data-section="credentials" class="top-nav-pill px-3 py-1.5 rounded-xl font-medium transition-all">04. Credentials &amp; Growth</a>
+      </nav>
 
-      <div class="flex items-center gap-2">
-        <button onclick="window.print()" class="magnetic-el inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-cyan-400 hover:bg-cyan-300 active:scale-[0.98] text-slate-950 text-xs font-semibold shadow-md shadow-cyan-400/15 transition">
-          <svg class="w-3.5 h-3.5" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,144v64a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V144a8,8,0,0,1,16,0v56H208V144a8,8,0,0,1,16,0Zm-101.66,5.66a8,8,0,0,0,11.32,0l40-40a8,8,0,0,0-11.32-11.32L136,124.69V32a8,8,0,0,0-16,0v92.69L93.66,98.34a8,8,0,0,0-11.32,11.32Z"></path></svg>
+      <!-- Command Search & Resume PDF -->
+      <div class="flex items-center gap-2 shrink-0">
+        <button
+          type="button"
+          id="open-palette-btn"
+          aria-label="Open Command Palette"
+          class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.12] text-xs text-slate-200 transition-colors"
+        >
+          <svg class="w-3.5 h-3.5 text-cyan-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="7"></circle>
+            <path stroke-linecap="round" d="M21 21l-4.35-4.35"></path>
+          </svg>
+          <span>Jump</span>
+          <kbd class="font-mono text-[10px] px-1.5 py-0.5 rounded bg-black/40 border border-white/10 text-slate-300">Ctrl K</kbd>
+        </button>
+
+        <button
+          type="button"
+          id="print-resume-btn"
+          class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-cyan-400/20 hover:bg-cyan-400/30 border border-cyan-300/45 text-cyan-100 text-xs font-medium transition-all"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+          </svg>
           <span>Resume PDF</span>
         </button>
-
-        <!-- Mobile Menu Button -->
-        <button id="mobile-menu-btn" aria-label="Toggle chapter menu" aria-expanded="false" class="md:hidden p-2 rounded-lg bg-white/[0.05] border border-white/10 text-slate-200">
-          <svg id="menu-icon-open" class="w-5 h-5" viewBox="0 0 256 256" fill="currentColor"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path></svg>
-          <svg id="menu-icon-close" class="w-5 h-5 hidden" viewBox="0 0 256 256" fill="currentColor"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path></svg>
-        </button>
       </div>
-    </nav>
+    </div>
   </header>
 
-  <!-- Full-Height Blurred Mobile Chapter Drawer -->
-  <div id="mobile-menu-panel" class="fixed inset-0 z-30 bg-[#05070D]/95 backdrop-blur-2xl pt-24 px-6 flex flex-col justify-between pb-10 opacity-0 pointer-events-none transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:hidden no-print">
-    <div class="space-y-6">
-      <p class="text-xs font-mono uppercase tracking-wider text-cyan-400">Interactive Dossier Chapters</p>
-      <div class="flex flex-col space-y-4">
-        <button data-view="overview" class="mobile-view-tab text-left text-2xl font-semibold text-white translate-y-6 opacity-0 transition-all duration-500">01. Executive Overview</button>
-        <button data-view="experience" class="mobile-view-tab text-left text-2xl font-semibold text-white translate-y-6 opacity-0 transition-all duration-500">02. Enterprise Experience</button>
-        <button data-view="skills" class="mobile-view-tab text-left text-2xl font-semibold text-white translate-y-6 opacity-0 transition-all duration-500">03. Skills &amp; Forensic Labs</button>
-        <button data-view="credentials" class="mobile-view-tab text-left text-2xl font-semibold text-white translate-y-6 opacity-0 transition-all duration-500">04. Credentials &amp; Growth</button>
-      </div>
-    </div>
-    <div class="space-y-3 border-t border-white/10 pt-6">
-      <button data-copy="Srikanthsai001@gmail.com" data-label="Email copied: Srikanthsai001@gmail.com" class="copy-btn w-full py-3 px-4 rounded-xl bg-cyan-400 text-slate-950 text-sm font-semibold text-center">
-        Copy Email (Srikanthsai001@gmail.com)
-      </button>
-      <div class="grid grid-cols-2 gap-3">
-        <a href="https://linkedin.com/in/sai-srikanth" target="_blank" rel="noopener noreferrer" class="py-2.5 px-4 rounded-xl bg-white/[0.06] border border-white/10 text-white text-xs font-semibold text-center">LinkedIn</a>
-        <a href="https://github.com/sai-sri94" target="_blank" rel="noopener noreferrer" class="py-2.5 px-4 rounded-xl bg-white/[0.06] border border-white/10 text-white text-xs font-semibold text-center">GitHub</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- MAIN INTERACTIVE WORKSPACE -->
-  <main id="workspace-stage" class="relative z-10 max-w-6xl mx-auto px-4 sm:px-8 pt-24 sm:pt-32 pb-20">
-
-    <!-- =====================================================================
-         VIEW 01: EXECUTIVE OVERVIEW (The 10-Second Hook & Story)
-         ===================================================================== -->
-    <section id="view-overview" class="view-panel space-y-10">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        
-        <!-- Left Story & Identity Column (7 Cols) -->
-        <div class="lg:col-span-7 space-y-6">
-          <div class="flex items-center gap-4">
-            <div class="relative shrink-0">
-              <div class="absolute -inset-1 rounded-2xl bg-cyan-400/25 blur-sm no-print"></div>
-              <img src="/avatar.png"
-                   alt="Portrait of Vijjapurapu Sai Srikanth"
-                   class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border border-white/15 shadow-xl"
-                   onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Sai+Srikanth&background=0B101B&color=F8FAFC&size=256&bold=true'" />
+  <!-- Continuous Single-Page Main Flow -->
+  <main id="app-main" class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-10 space-y-20">
+    <!-- ==================== 01. OVERVIEW HERO & DOSSIER MAP ==================== -->
+    <section id="overview" data-section-id="overview" class="scroll-mt-24 space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        <!-- Left Hero Card -->
+        <div class="lg:col-span-7 tilt-card spotlight-card mobile-spotlight rounded-2xl bg-surface/80 border border-white/[0.08] p-6 sm:p-8 flex flex-col justify-between backdrop-blur-md">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-emerald-500/10 border border-emerald-400/30 text-emerald-300 mb-4">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              Open to Hybrid, Remote &amp; Relocation
             </div>
-            <div>
-              <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/25 text-emerald-300 text-xs font-mono mb-1.5">
-                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>Open to Hybrid, Remote &amp; Relocation</span>
+
+            <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5">
+              <img
+                src="./avatar.png"
+                alt="Vijjapurapu Sai Srikanth"
+                class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover border border-cyan-300/35 shadow-[0_0_24px_rgba(34,211,238,0.16)] shrink-0 bg-panel"
+              />
+              <div>
+                <h1 class="text-3xl sm:text-4xl lg:text-[42px] font-semibold tracking-tight text-white leading-[1.1]">
+                  Vijjapurapu Sai Srikanth
+                </h1>
+                <p class="mt-1.5 text-sm sm:text-base font-medium text-cyan-300 leading-snug">
+                  Endpoint Security Engineer · Cybersecurity Professional Services Consultant · EDR Specialist
+                </p>
               </div>
-              <h1 class="text-3xl sm:text-5xl font-semibold tracking-tight hero-gradient-text text-balance">
-                Vijjapurapu Sai Srikanth
-              </h1>
-              <p class="text-sm sm:text-base text-cyan-300 font-medium mt-1">
-                Endpoint Security Engineer · Cybersecurity Professional Services Consultant · EDR Specialist
+            </div>
+
+            <div class="mt-5 space-y-3 text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <p>
+                Cybersecurity Professional Services Engineer and EDR Specialist with <strong class="text-white font-semibold">4.5+ years</strong> of hands-on experience securing enterprise infrastructure across <strong class="text-white font-semibold">10+ client environments</strong>. Proven track record architecting, deploying, and tuning <strong class="text-white font-semibold">Cyber 2.0 EDR</strong> across <strong class="text-cyan-300 font-semibold">6,000+ hybrid servers and workstations</strong>.
+              </p>
+              <p>
+                Holds an <strong class="text-white font-semibold">M.Tech in Cyber Security</strong> from <strong class="text-white font-semibold">National Forensic Sciences University (NFSU)</strong>. Experienced in configuring built-in <strong class="text-white font-semibold">zero-day/behavioral whitelisting</strong> and <strong class="text-white font-semibold">SMB shared-folder protection</strong>, verifying new application <strong class="text-white font-semibold">MD5 hashes via VirusTotal</strong>, configuring <strong class="text-white font-semibold">IP/Port log forwarding</strong> to client SIEM collectors, and leading <strong class="text-white font-semibold">L2/L3 incident containment and Root Cause Analysis (RCA)</strong>.
               </p>
             </div>
           </div>
 
-          <!-- Professional Summary -->
-          <div class="space-y-3 max-w-[660px]">
-            <p class="text-base text-slate-200 leading-relaxed text-pretty">
-              Cybersecurity Professional Services Engineer and EDR Specialist with <span class="text-white font-semibold">4.5+ years</span> of hands-on experience securing enterprise infrastructure across <span class="text-white font-semibold">10+ client environments</span>. Proven track record architecting, deploying, and tuning <span class="text-white font-semibold">Cyber 2.0 EDR</span> across <span class="text-white font-semibold">6,000+ hybrid servers and workstations</span> (Windows, Linux, macOS).
-            </p>
-            <p class="text-sm text-slate-400 leading-relaxed text-pretty">
-              Holds an <span class="text-slate-200 font-medium">M.Tech in Cyber Security from National Forensic Sciences University (NFSU / GFSU)</span>. Experienced in configuring built-in zero-day whitelisting and SMB shared-folder protection, verifying new application MD5 hashes via VirusTotal, configuring IP/Port log forwarding to client SIEM collectors, and leading L2/L3 incident containment and Root Cause Analysis (RCA).
-            </p>
-          </div>
-
-          <!-- Single-Instance Primary Action Row -->
-          <div class="flex flex-wrap items-center gap-3 pt-1 no-print">
-            <button data-view-target="experience" class="view-nav-trigger magnetic-el inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 active:scale-[0.98] text-slate-950 text-sm font-semibold shadow-lg shadow-cyan-400/20 transition">
-              <span>Explore Enterprise Work</span>
-              <svg class="w-4 h-4" viewBox="0 0 256 256" fill="currentColor"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg>
-            </button>
-
-            <button data-copy="Srikanthsai001@gmail.com" data-label="Email copied: Srikanthsai001@gmail.com" class="magnetic-el copy-btn inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-[#0B101B] hover:bg-[#131B2E] active:scale-[0.98] text-slate-100 border border-white/10 text-xs font-mono transition">
-              <svg class="w-4 h-4 text-cyan-400" viewBox="0 0 256 256" fill="currentColor"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48Zm-96,85.15L52.57,64H203.43ZM98.71,128,40,181.81V74.19Zm11.84,10.85,12,11.05a8,8,0,0,0,10.82,0l12-11.05,58,53.15H52.57ZM157.29,128,216,74.18V181.82Z"></path></svg>
-              <span>Srikanthsai001@gmail.com</span>
-            </button>
-
-            <button data-copy="+919032677042" data-label="Phone copied: +91 9032677042" class="magnetic-el copy-btn inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-[#0B101B] hover:bg-[#131B2E] active:scale-[0.98] text-slate-100 border border-white/10 text-xs font-mono transition">
-              <svg class="w-4 h-4 text-emerald-400" viewBox="0 0 256 256" fill="currentColor"><path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46Z"></path></svg>
-              <span>+91 9032677042</span>
-            </button>
-
-            <a href="https://linkedin.com/in/sai-srikanth" target="_blank" rel="noopener noreferrer" class="magnetic-el inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-[#0B101B] hover:bg-[#131B2E] active:scale-[0.98] text-slate-200 border border-white/10 text-xs font-semibold transition">
-              <span>LinkedIn</span>
-              <svg class="w-3.5 h-3.5 text-slate-400" viewBox="0 0 256 256" fill="currentColor"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"></path></svg>
-            </a>
-
-            <a href="https://github.com/sai-sri94" target="_blank" rel="noopener noreferrer" class="magnetic-el inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-[#0B101B] hover:bg-[#131B2E] active:scale-[0.98] text-slate-200 border border-white/10 text-xs font-semibold transition">
-              <span>GitHub</span>
-              <svg class="w-3.5 h-3.5 text-slate-400" viewBox="0 0 256 256" fill="currentColor"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"></path></svg>
-            </a>
+          <!-- Action Pills Row -->
+          <div class="mt-6 pt-5 border-t border-white/[0.07] space-y-2.5">
+            <div class="flex flex-wrap items-center gap-2.5">
+              <a
+                href="#experience"
+                data-section="experience"
+                class="section-link inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-cyan-400/18 hover:bg-cyan-400/28 border border-cyan-300/45 text-cyan-100 text-xs font-semibold transition-all"
+              >
+                <span>Explore Enterprise Work</span>
+                <span>→</span>
+              </a>
+              <a
+                href="mailto:srikanthsai001@gmail.com"
+                class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.09] text-xs font-mono text-slate-200 transition-colors"
+              >
+                <span>✉</span>
+                <span>srikanthsai001@gmail.com</span>
+              </a>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 text-xs font-mono">
+              <a
+                href="tel:+919032677042"
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] hover:bg-white/[0.07] border border-white/[0.08] text-slate-300 transition-colors"
+              >
+                <span>☎</span>
+                <span>+91 9032677042</span>
+              </a>
+              <a
+                href="https://www.linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white/[0.03] hover:bg-white/[0.07] border border-white/[0.08] text-slate-300 transition-colors"
+              >
+                <span>LinkedIn</span>
+                <span class="text-cyan-400">↗</span>
+              </a>
+              <a
+                href="https://github.com/sai-sri94"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white/[0.03] hover:bg-white/[0.07] border border-white/[0.08] text-slate-300 transition-colors"
+              >
+                <span>GitHub</span>
+                <span class="text-cyan-400">↗</span>
+              </a>
+            </div>
           </div>
         </div>
 
-        <!-- Right Interactive Dossier Index & Scale Cards (5 Cols) -->
-        <div class="lg:col-span-5 space-y-4">
-          <div class="grid grid-cols-2 gap-3">
-            <div class="tilt-card spotlight-card p-4 rounded-2xl">
-              <div class="text-2xl sm:text-3xl font-mono font-semibold text-white">6,000<span class="text-cyan-400">+</span></div>
+        <!-- Right Column: 2x2 KPI Grid + Interactive Dossier Map -->
+        <div class="lg:col-span-5 flex flex-col gap-5">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="tilt-card spotlight-card mobile-spotlight rounded-2xl bg-surface/80 border border-white/[0.08] p-4 sm:p-5">
+              <div class="text-2xl sm:text-3xl font-mono font-semibold text-white kpi-counter" data-target="6000" data-suffix="+">6,000+</div>
               <div class="text-xs text-slate-400 mt-1">Hybrid endpoints secured</div>
             </div>
-            <div class="tilt-card spotlight-card p-4 rounded-2xl">
-              <div class="text-2xl sm:text-3xl font-mono font-semibold text-white">10<span class="text-cyan-400">+</span></div>
+            <div class="tilt-card spotlight-card mobile-spotlight rounded-2xl bg-surface/80 border border-white/[0.08] p-4 sm:p-5">
+              <div class="text-2xl sm:text-3xl font-mono font-semibold text-white kpi-counter" data-target="10" data-suffix="+">10+</div>
               <div class="text-xs text-slate-400 mt-1">Enterprise client fleets</div>
             </div>
-            <div class="tilt-card spotlight-card p-4 rounded-2xl">
-              <div class="text-xl sm:text-2xl font-mono font-semibold text-emerald-400">4.5+ Yrs</div>
+            <div class="tilt-card spotlight-card mobile-spotlight rounded-2xl bg-surface/80 border border-white/[0.08] p-4 sm:p-5">
+              <div class="text-2xl sm:text-3xl font-mono font-semibold text-white kpi-counter" data-target="4.5" data-decimals="1" data-suffix="+ Yrs">4.5+ Yrs</div>
               <div class="text-xs text-slate-400 mt-1">Cyber 2.0 EDR operations</div>
             </div>
-            <div class="tilt-card spotlight-card p-4 rounded-2xl">
-              <div class="text-xl sm:text-2xl font-mono font-semibold text-cyan-300">M.Tech</div>
+            <div class="tilt-card spotlight-card mobile-spotlight rounded-2xl bg-surface/80 border border-white/[0.08] p-4 sm:p-5">
+              <div class="text-2xl sm:text-3xl font-mono font-semibold text-white">M.Tech</div>
               <div class="text-xs text-slate-400 mt-1">Cyber Security · NFSU</div>
             </div>
           </div>
 
-          <!-- Interactive Chapter Roadmap Card -->
-          <div class="tilt-card spotlight-card p-5 rounded-2xl space-y-3 no-print">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-mono uppercase tracking-wider text-cyan-400">Interactive Dossier Map</span>
-              <span class="text-xs font-mono text-slate-500">Visakhapatnam, India</span>
-            </div>
-            <p class="text-xs text-slate-400">Select any chapter to inspect operational deployments, forensic case files, or verified credentials:</p>
-            <div class="space-y-2">
-              <button data-view-target="experience" class="view-nav-trigger w-full flex items-center justify-between p-3 rounded-xl bg-white/[0.03] hover:bg-cyan-400/10 border border-white/[0.07] hover:border-cyan-400/35 text-left transition">
-                <div>
-                  <div class="text-xs font-semibold text-white">02. Enterprise Experience</div>
-                  <div class="text-[11px] text-slate-400">Cyber 2.0 deployments, SMB whitelisting &amp; SIEM log routing</div>
-                </div>
-                <span class="text-cyan-400 font-mono text-xs">Open →</span>
-              </button>
+          <!-- Interactive Dossier Map -->
+          <div class="tilt-card spotlight-card mobile-spotlight rounded-2xl bg-surface/80 border border-white/[0.08] p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-2 text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-1.5">
+                <span class="text-cyan-300">Interactive Dossier Map</span>
+                <span>India · Hybrid / Remote / Relocate</span>
+              </div>
+              <p class="text-xs text-slate-400 mb-4">
+                Jump directly to operational deployments, forensic case files, or verified credentials:
+              </p>
 
-              <button data-view-target="skills" class="view-nav-trigger w-full flex items-center justify-between p-3 rounded-xl bg-white/[0.03] hover:bg-cyan-400/10 border border-white/[0.07] hover:border-cyan-400/35 text-left transition">
-                <div>
-                  <div class="text-xs font-semibold text-white">03. Skills &amp; Investigation Labs</div>
-                  <div class="text-[11px] text-slate-400">Emotet &amp; Remcos case file, OWASP VAPT &amp; technical stack</div>
-                </div>
-                <span class="text-cyan-400 font-mono text-xs">Open →</span>
-              </button>
+              <div class="space-y-2.5">
+                <a href="#experience" data-section="experience" class="section-link group flex items-center justify-between gap-3 rounded-xl bg-white/[0.025] hover:bg-cyan-400/10 border border-white/[0.07] hover:border-cyan-300/35 px-3.5 py-2.5 transition-all">
+                  <div>
+                    <div class="text-xs sm:text-sm font-semibold text-white">02. Enterprise Experience</div>
+                    <div class="text-[11px] text-slate-400">Cyber 2.0 deployments, SMB whitelisting &amp; SIEM log routing</div>
+                  </div>
+                  <span class="text-xs font-mono text-cyan-300 group-hover:translate-x-0.5 transition-transform shrink-0">Open →</span>
+                </a>
 
-              <button data-view-target="credentials" class="view-nav-trigger w-full flex items-center justify-between p-3 rounded-xl bg-white/[0.03] hover:bg-cyan-400/10 border border-white/[0.07] hover:border-cyan-400/35 text-left transition">
-                <div>
-                  <div class="text-xs font-semibold text-white">04. Credentials &amp; Growth Track</div>
-                  <div class="text-[11px] text-slate-400">NFSU M.Tech, Splunk, Autopsy, SC-200 &amp; Qualys study</div>
-                </div>
-                <span class="text-cyan-400 font-mono text-xs">Open →</span>
-              </button>
+                <a href="#skills" data-section="skills" class="section-link group flex items-center justify-between gap-3 rounded-xl bg-white/[0.025] hover:bg-cyan-400/10 border border-white/[0.07] hover:border-cyan-300/35 px-3.5 py-2.5 transition-all">
+                  <div>
+                    <div class="text-xs sm:text-sm font-semibold text-white">03. Skills &amp; Investigation Labs</div>
+                    <div class="text-[11px] text-slate-400">Emotet &amp; Remcos case file, OWASP VAPT &amp; technical stack</div>
+                  </div>
+                  <span class="text-xs font-mono text-cyan-300 group-hover:translate-x-0.5 transition-transform shrink-0">Open →</span>
+                </a>
+
+                <a href="#credentials" data-section="credentials" class="section-link group flex items-center justify-between gap-3 rounded-xl bg-white/[0.025] hover:bg-cyan-400/10 border border-white/[0.07] hover:border-cyan-300/35 px-3.5 py-2.5 transition-all">
+                  <div>
+                    <div class="text-xs sm:text-sm font-semibold text-white">04. Credentials &amp; Growth Track</div>
+                    <div class="text-[11px] text-slate-400">NFSU M.Tech, Splunk, Autopsy, SC-200 &amp; Qualys study</div>
+                  </div>
+                  <span class="text-xs font-mono text-cyan-300 group-hover:translate-x-0.5 transition-transform shrink-0">Open →</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- =====================================================================
-         VIEW 02: ENTERPRISE EXPERIENCE (Real Production Operations First)
-         ===================================================================== -->
-    <section id="view-experience" class="view-panel hidden space-y-8">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/[0.08] pb-5">
+    <!-- ==================== 02. ENTERPRISE EXPERIENCE ==================== -->
+    <section id="experience" data-section-id="experience" class="scroll-mt-24 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-white/[0.08] pb-4">
         <div>
-          <span class="text-xs font-mono uppercase tracking-wider text-cyan-400">Chapter 02 · Production Operations</span>
-          <h2 class="text-2xl sm:text-3xl font-semibold text-white mt-1">Enterprise Experience &amp; Operational Workflow</h2>
+          <div class="text-xs font-mono text-cyan-400">02 // OPERATIONAL TRACK RECORD</div>
+          <h2 class="text-2xl sm:text-3xl font-semibold text-white mt-0.5">Enterprise Experience &amp; EDR Telemetry</h2>
         </div>
-        <span class="text-xs font-mono text-slate-400">Dec 2021 – Present · Cyber 2.0</span>
+        <div class="text-xs font-mono text-slate-400">6,000+ Endpoints · 10+ Fleets</div>
       </div>
 
-      <!-- Master-Detail Operational Console -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        
-        <!-- Left Selectable Operational Pillars (5 Cols) -->
-        <div class="lg:col-span-5 space-y-3" id="exp-list">
-          <button class="exp-item tilt-card spotlight-card w-full text-left p-4 rounded-2xl border-cyan-400/50 bg-white/[0.05]" data-exp="0">
-            <div class="flex items-center justify-between text-[11px] font-mono text-cyan-400">
-              <span>01 · Fleet Architecture</span>
-              <span>6,000+ Nodes</span>
-            </div>
-            <h3 class="text-sm font-semibold text-white mt-1">Hybrid Enterprise EDR Rollout</h3>
-            <p class="text-xs text-slate-400 mt-1">Pre-installation infrastructure assessments &amp; rollout across 10+ enterprise clients.</p>
-          </button>
-
-          <button class="exp-item tilt-card spotlight-card w-full text-left p-4 rounded-2xl" data-exp="1">
-            <div class="flex items-center justify-between text-[11px] font-mono text-emerald-400">
-              <span>02 · Built-In Zero-Day &amp; SMB</span>
-              <span>Policy Config</span>
-            </div>
-            <h3 class="text-sm font-semibold text-white mt-1">Zero-Day Whitelisting &amp; SMB Protection</h3>
-            <p class="text-xs text-slate-400 mt-1">Configuring Cyber 2.0's built-in whitelisting &amp; shared network folder controls.</p>
-          </button>
-
-          <button class="exp-item tilt-card spotlight-card w-full text-left p-4 rounded-2xl" data-exp="2">
-            <div class="flex items-center justify-between text-[11px] font-mono text-amber-400">
-              <span>03 · New-App Verification</span>
-              <span>MD5 + VirusTotal</span>
-            </div>
-            <h3 class="text-sm font-semibold text-white mt-1">Application MD5 Hash Lookup &amp; Triage</h3>
-            <p class="text-xs text-slate-400 mt-1">Verifying MD5 hashes captured upon new client application installs via VirusTotal.</p>
-          </button>
-
-          <button class="exp-item tilt-card spotlight-card w-full text-left p-4 rounded-2xl" data-exp="3">
-            <div class="flex items-center justify-between text-[11px] font-mono text-blue-400">
-              <span>04 · Telemetry Handoff</span>
-              <span>Client SIEM IP:Port</span>
-            </div>
-            <h3 class="text-sm font-semibold text-white mt-1">IP/Port Log Forwarding to Client SIEM</h3>
-            <p class="text-xs text-slate-400 mt-1">Configuring EDR log forwarding to client-provided SIEM collector IP &amp; port targets.</p>
-          </button>
-
-          <button class="exp-item tilt-card spotlight-card w-full text-left p-4 rounded-2xl" data-exp="4">
-            <div class="flex items-center justify-between text-[11px] font-mono text-purple-400">
-              <span>05 · Escalation &amp; Enablement</span>
-              <span>L2 / L3 RCA</span>
-            </div>
-            <h3 class="text-sm font-semibold text-white mt-1">Incident RCA, SOC Workshops &amp; R&amp;D</h3>
-            <p class="text-xs text-slate-400 mt-1">Primary L2/L3 escalation handling, Root Cause Analysis, and client SOC training.</p>
-          </button>
-        </div>
-
-        <!-- Right Operational Detail & Architecture Diagram (7 Cols) -->
-        <div class="lg:col-span-7">
-          <article id="exp-detail-pane" aria-live="polite" class="tilt-card spotlight-card rounded-3xl p-6 space-y-5 transition-opacity duration-300">
-            <div class="border-b border-white/[0.08] pb-4">
-              <div class="flex flex-wrap items-center justify-between gap-2">
-                <span id="exp-badge" class="text-xs font-mono text-cyan-400">Cyber 2.0 · Fleet Architecture</span>
-                <span id="exp-scope" class="text-xs font-mono text-slate-400">10+ Enterprise Organizations</span>
-              </div>
-              <h3 id="exp-title" class="text-xl font-semibold text-white mt-1">
-                Hybrid Enterprise EDR Rollout (6,000+ Endpoints)
-              </h3>
-            </div>
-
-            <!-- Interactive SVG Defense Topology -->
-            <div class="rounded-xl bg-[#060912] border border-white/[0.08] p-4 overflow-x-auto">
-              <div class="flex items-center justify-between text-[11px] text-slate-400 mb-3">
-                <span>Operational Defense Flow</span>
-                <span id="exp-diagram-label" class="font-mono text-cyan-400">Active Focus: Hybrid Fleet</span>
-              </div>
-              <svg viewBox="0 0 640 84" class="w-full min-w-[460px] h-auto select-none" aria-label="Operational Workflow Diagram">
-                <line id="exp-conn-0" x1="142" y1="42" x2="176" y2="42" stroke="#334155" stroke-width="2" stroke-dasharray="4 3" />
-                <line id="exp-conn-1" x1="306" y1="42" x2="340" y2="42" stroke="#334155" stroke-width="2" stroke-dasharray="4 3" />
-                <line id="exp-conn-2" x1="470" y1="42" x2="504" y2="42" stroke="#334155" stroke-width="2" stroke-dasharray="4 3" />
-
-                <g id="exp-node-0">
-                  <rect x="6" y="12" width="136" height="60" rx="10" fill="#0F172A" stroke="#22D3EE" stroke-width="1.5" />
-                  <text x="74" y="36" text-anchor="middle" fill="#F8FAFC" font-family="Geist, sans-serif" font-size="11" font-weight="600">Hybrid Fleet</text>
-                  <text x="74" y="53" text-anchor="middle" fill="#22D3EE" font-family="Geist Mono, monospace" font-size="9.5">6,000+ Nodes</text>
-                </g>
-
-                <g id="exp-node-1">
-                  <rect x="176" y="12" width="130" height="60" rx="10" fill="#0B1120" stroke="#1E293B" stroke-width="1.5" />
-                  <text x="241" y="36" text-anchor="middle" fill="#CBD5E1" font-family="Geist, sans-serif" font-size="11" font-weight="600">Zero-Day &amp; SMB</text>
-                  <text x="241" y="53" text-anchor="middle" fill="#64748B" font-family="Geist Mono, monospace" font-size="9.5">Built-In Policy</text>
-                </g>
-
-                <g id="exp-node-2">
-                  <rect x="340" y="12" width="130" height="60" rx="10" fill="#0B1120" stroke="#1E293B" stroke-width="1.5" />
-                  <text x="405" y="36" text-anchor="middle" fill="#CBD5E1" font-family="Geist, sans-serif" font-size="11" font-weight="600">MD5 &amp; SIEM Log</text>
-                  <text x="405" y="53" text-anchor="middle" fill="#64748B" font-family="Geist Mono, monospace" font-size="9.5">VT / IP:Port</text>
-                </g>
-
-                <g id="exp-node-3">
-                  <rect x="504" y="12" width="130" height="60" rx="10" fill="#0B1120" stroke="#1E293B" stroke-width="1.5" />
-                  <text x="569" y="36" text-anchor="middle" fill="#CBD5E1" font-family="Geist, sans-serif" font-size="11" font-weight="600">L2 / L3 RCA</text>
-                  <text x="569" y="53" text-anchor="middle" fill="#64748B" font-family="Geist Mono, monospace" font-size="9.5">Isolation &amp; Report</text>
-                </g>
-              </svg>
-            </div>
-
-            <div class="space-y-4">
-              <div>
-                <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400 mb-1">Environment &amp; Operational Scope</h4>
-                <p id="exp-context" class="text-sm text-slate-300 leading-relaxed"></p>
-              </div>
-              <div>
-                <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400 mb-1">My Direct Responsibility &amp; Execution</h4>
-                <p id="exp-execution" class="text-sm text-slate-300 leading-relaxed"></p>
-              </div>
-            </div>
-
-            <div class="space-y-1.5 pt-1">
-              <div class="flex items-center justify-between text-[11px] text-slate-400">
-                <span id="exp-artifact-title">Sanitized Operational Workflow Summary</span>
-                <span class="font-mono text-slate-500">Client identifiers redacted</span>
-              </div>
-              <pre id="exp-artifact" class="p-4 rounded-xl bg-[#05070D] border border-white/[0.08] font-mono text-xs text-slate-200 overflow-x-auto leading-relaxed whitespace-pre-wrap"></pre>
-            </div>
-          </article>
-        </div>
-      </div>
-
-      <!-- Prior Operations Role -->
-      <div class="tilt-card spotlight-card p-5 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <div class="flex items-center gap-2">
-            <h3 class="text-sm font-semibold text-white">Operations &amp; Service Supervisor</h3>
-            <span class="text-xs font-mono text-cyan-400">· Heywalle (Incubated E-Services Startup)</span>
-          </div>
-          <p class="text-xs text-slate-400 mt-1">Supervised end-to-end platform service delivery, vendor coordination, client escalations, and daily operational workflows.</p>
-        </div>
-        <span class="text-xs font-mono text-slate-400 shrink-0">Feb 2018 – Jul 2019</span>
-      </div>
-
-      <!-- Next Chapter Progression Bar -->
-      <div class="flex items-center justify-between pt-4 border-t border-white/[0.08] no-print">
-        <button data-view-target="overview" class="view-nav-trigger text-xs font-mono text-slate-400 hover:text-white transition">← 01. Overview</button>
-        <button data-view-target="skills" class="view-nav-trigger inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.05] hover:bg-cyan-400/15 border border-white/10 hover:border-cyan-400/40 text-xs font-semibold text-white transition">
-          <span>Next: 03. Skills &amp; Investigation Labs</span>
-          <span class="text-cyan-400">→</span>
-        </button>
-      </div>
-    </section>
-
-    <!-- =====================================================================
-         VIEW 03: SKILLS & FORENSIC INVESTIGATION LABS
-         ===================================================================== -->
-    <section id="view-skills" class="view-panel hidden space-y-10">
-      <div class="border-b border-white/[0.08] pb-5">
-        <span class="text-xs font-mono uppercase tracking-wider text-cyan-400">Chapter 03 · Technical Stack &amp; Research</span>
-        <h2 class="text-2xl sm:text-3xl font-semibold text-white mt-1">Core Competencies &amp; Forensic Case Files</h2>
-      </div>
-
-      <!-- Bento Technical Skills Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="tilt-card spotlight-card p-5 rounded-2xl space-y-3">
-          <h3 class="text-sm font-semibold text-cyan-300">Endpoint Security &amp; EDR</h3>
-          <div class="flex flex-wrap gap-1.5">
-            <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.07] text-xs text-slate-200">Cyber 2.0 EDR</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.07] text-xs text-slate-200">6,000+ Node Rollout</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.07] text-xs text-slate-200">Built-In Zero-Day Policy</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.07] text-xs text-slate-200">SMB Share Protection</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.07] text-xs text-slate-200">Host Isolation &amp; RCA</span>
-          </div>
-        </div>
-
-        <div class="tilt-card spotlight-card p-5 rounded-2xl space-y-3">
-          <h3 class="text-sm font-semibold text-emerald-300">Triage &amp; Log Forwarding</h3>
-          <div class="flex flex-wrap gap-1.5">
-            <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.07] text-xs text-slate-200">New-App MD5 Hash Triage</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.07] text-xs text-slate-200">VirusTotal Reputation Lookup</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.07] text-xs text-slate-200">Client SIEM IP/Port Forwarding</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.07] text-xs text-slate-200">Syslog / CEF</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.07] text-xs text-slate-200">Splunk Fundamentals</span>
-          </div>
-        </div>
-
-        <div class="tilt-card spotlight-card p-5 rounded-2xl space-y-3">
-          <h3 class="text-sm font-semibold text-amber-300">Forensics &amp; VAPT Tooling</h3>
-          <div class="flex flex-wrap gap-1.5">
-            <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.07] text-xs text-slate-200">IDA Pro</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.07] text-xs text-slate-200">Sysinternals Procmon</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.07] text-xs text-slate-200">Wireshark &amp; tcpdump</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.07] text-xs text-slate-200">Autopsy &amp; FTK</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.07] text-xs text-slate-200">Burp Suite, Nmap, Nessus</span>
-          </div>
-        </div>
-
-        <div class="tilt-card spotlight-card p-5 rounded-2xl space-y-3">
-          <h3 class="text-sm font-semibold text-blue-300">Platforms &amp; Consulting</h3>
-          <div class="flex flex-wrap gap-1.5">
-            <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.07] text-xs text-slate-200">Windows Server &amp; AD</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.07] text-xs text-slate-200">Linux (Ubuntu, RHEL)</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.07] text-xs text-slate-200">macOS Endpoints</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.07] text-xs text-slate-200">SOC Enablement Workshops</span>
-            <span class="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.07] text-xs text-slate-200">OWASP Top 10</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Interactive Malware & Security Lab Case File Explorer -->
-      <div class="space-y-4">
-        <div class="flex flex-wrap items-center justify-between gap-3">
+      <!-- Cyber 2.0 Operational Workflow SVG & Inspector -->
+      <div class="tilt-card spotlight-card mobile-spotlight rounded-2xl bg-surface/80 border border-white/[0.08] p-6">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-5">
           <div>
-            <h3 class="text-lg font-semibold text-white">Hands-On Investigation &amp; Research Case Files</h3>
-            <p class="text-xs text-slate-400">Select a research project to inspect sandbox methodology, host/network indicators, and defensive takeaways.</p>
+            <span class="text-[11px] font-mono uppercase tracking-wider text-cyan-400">Architecture Inspector</span>
+            <h3 class="text-lg font-semibold text-white mt-0.5">Cyber 2.0 EDR Deployment, Hash Triage &amp; SIEM Routing</h3>
           </div>
-          <a href="https://github.com/sai-sri94" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-xs font-mono text-cyan-300 transition">
-            <span>GitHub Write-Ups (sai-sri94)</span>
-            <span>↗</span>
-          </a>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          <div class="lg:col-span-4 space-y-3" id="lab-list">
-            <button class="lab-item tilt-card spotlight-card w-full text-left p-4 rounded-2xl border-cyan-400/50 bg-white/[0.05]" data-lab="0">
-              <span class="text-[11px] font-mono text-cyan-400">NFSU Cyber Range Lab</span>
-              <h4 class="text-sm font-semibold text-white mt-1">Behavioral Malware Analysis: Emotet &amp; Remcos</h4>
-              <p class="text-xs text-slate-400 mt-1">Procmon · Wireshark · IDA Pro · Isolated Sandbox</p>
-            </button>
-
-            <button class="lab-item tilt-card spotlight-card w-full text-left p-4 rounded-2xl" data-lab="1">
-              <span class="text-[11px] font-mono text-emerald-400">Threat Intelligence Research</span>
-              <h4 class="text-sm font-semibold text-white mt-1">Malware Classification via Visualization</h4>
-              <p class="text-xs text-slate-400 mt-1">Structural sample mapping &amp; threat actor attribution</p>
-            </button>
-
-            <button class="lab-item tilt-card spotlight-card w-full text-left p-4 rounded-2xl" data-lab="2">
-              <span class="text-[11px] font-mono text-amber-400">Application Security Lab</span>
-              <h4 class="text-sm font-semibold text-white mt-1">Web Application VAPT (OWASP Top 10)</h4>
-              <p class="text-xs text-slate-400 mt-1">Burp Suite · Nmap · Vulnerability Validation</p>
-            </button>
-          </div>
-
-          <div class="lg:col-span-8">
-            <article id="lab-detail-pane" aria-live="polite" class="tilt-card spotlight-card rounded-3xl p-6 space-y-5 transition-opacity duration-300">
-              <div class="border-b border-white/[0.08] pb-4">
-                <span id="lab-tag" class="text-xs font-mono text-cyan-400">Malware Forensics Dossier</span>
-                <h4 id="lab-title" class="text-xl font-semibold text-white mt-1">Behavioral Malware Analysis (Emotet &amp; Remcos)</h4>
-                <p id="lab-tools" class="text-xs font-mono text-slate-400 mt-1">Toolchain: Sysinternals Procmon · Wireshark · IDA Pro · Isolated VM Sandbox</p>
-              </div>
-
-              <div id="lab-stages" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
-            </article>
+          <div id="workflow-tabs" class="flex flex-wrap gap-1.5">
+            <button type="button" data-stage="rollout" class="workflow-tab active px-3 py-1.5 rounded-lg text-xs font-mono border transition-all">1. Rollout &amp; SMB Guard</button>
+            <button type="button" data-stage="triage" class="workflow-tab px-3 py-1.5 rounded-lg text-xs font-mono border transition-all">2. MD5 &amp; VirusTotal</button>
+            <button type="button" data-stage="siem" class="workflow-tab px-3 py-1.5 rounded-lg text-xs font-mono border transition-all">3. IP/Port SIEM Stream</button>
+            <button type="button" data-stage="rca" class="workflow-tab px-3 py-1.5 rounded-lg text-xs font-mono border transition-all">4. L2/L3 RCA &amp; Isolate</button>
           </div>
         </div>
-      </div>
 
-      <!-- Chapter Progression Bar -->
-      <div class="flex items-center justify-between pt-4 border-t border-white/[0.08] no-print">
-        <button data-view-target="experience" class="view-nav-trigger text-xs font-mono text-slate-400 hover:text-white transition">← 02. Experience</button>
-        <button data-view-target="credentials" class="view-nav-trigger inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.05] hover:bg-cyan-400/15 border border-white/10 hover:border-cyan-400/40 text-xs font-semibold text-white transition">
-          <span>Next: 04. Credentials &amp; Growth</span>
-          <span class="text-cyan-400">→</span>
-        </button>
-      </div>
-    </section>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div class="lg:col-span-7">
+            <svg viewBox="0 0 640 200" class="w-full h-auto rounded-xl bg-obsidian/90 border border-white/[0.07] p-3" role="img" aria-label="Cyber 2.0 EDR workflow diagram">
+              <defs>
+                <linearGradient id="cyanFlow" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#22D3EE" stop-opacity="0.9" />
+                  <stop offset="100%" stop-color="#6366F1" stop-opacity="0.9" />
+                </linearGradient>
+              </defs>
+              <g id="svg-node-rollout">
+                <rect x="18" y="42" width="132" height="116" rx="10" fill="#0E1524" stroke="#22D3EE" stroke-width="1.6" />
+                <text x="84" y="70" text-anchor="middle" fill="#67E8F9" font-family="Geist Mono, monospace" font-size="11" font-weight="600">6,000+ ENDPOINTS</text>
+                <text x="84" y="92" text-anchor="middle" fill="#E2E8F0" font-family="Geist, sans-serif" font-size="11">Cyber 2.0 Agent</text>
+                <text x="84" y="110" text-anchor="middle" fill="#94A3B8" font-family="Geist, sans-serif" font-size="10">Zero-Day Whitelist</text>
+                <text x="84" y="128" text-anchor="middle" fill="#94A3B8" font-family="Geist, sans-serif" font-size="10">SMB Share Guard</text>
+              </g>
+              <line x1="150" y1="100" x2="196" y2="100" stroke="url(#cyanFlow)" stroke-width="2" stroke-dasharray="4 3" />
+              <g id="svg-node-triage">
+                <rect x="196" y="42" width="134" height="116" rx="10" fill="#0E1524" stroke="#475569" stroke-width="1.2" />
+                <text x="263" y="70" text-anchor="middle" fill="#E2E8F0" font-family="Geist Mono, monospace" font-size="11" font-weight="600">HASH &amp; VT CHECK</text>
+                <text x="263" y="92" text-anchor="middle" fill="#94A3B8" font-family="Geist, sans-serif" font-size="10">New App MD5 Capture</text>
+                <text x="263" y="110" text-anchor="middle" fill="#94A3B8" font-family="Geist, sans-serif" font-size="10">VirusTotal Lookup</text>
+                <text x="263" y="128" text-anchor="middle" fill="#94A3B8" font-family="Geist, sans-serif" font-size="10">Reputation Verdict</text>
+              </g>
+              <line x1="330" y1="100" x2="376" y2="100" stroke="url(#cyanFlow)" stroke-width="2" stroke-dasharray="4 3" />
+              <g id="svg-node-siem">
+                <rect x="376" y="42" width="122" height="116" rx="10" fill="#0E1524" stroke="#475569" stroke-width="1.2" />
+                <text x="437" y="70" text-anchor="middle" fill="#E2E8F0" font-family="Geist Mono, monospace" font-size="11" font-weight="600">SIEM COLLECTOR</text>
+                <text x="437" y="92" text-anchor="middle" fill="#94A3B8" font-family="Geist, sans-serif" font-size="10">IP / Port Forwarding</text>
+                <text x="437" y="110" text-anchor="middle" fill="#94A3B8" font-family="Geist, sans-serif" font-size="10">Client SOC Logs</text>
+                <text x="437" y="128" text-anchor="middle" fill="#94A3B8" font-family="Geist, sans-serif" font-size="10">Central Correlation</text>
+              </g>
+              <line x1="498" y1="100" x2="522" y2="100" stroke="url(#cyanFlow)" stroke-width="2" stroke-dasharray="4 3" />
+              <g id="svg-node-rca">
+                <rect x="522" y="42" width="104" height="116" rx="10" fill="#0E1524" stroke="#475569" stroke-width="1.2" />
+                <text x="574" y="70" text-anchor="middle" fill="#E2E8F0" font-family="Geist Mono, monospace" font-size="11" font-weight="600">L2/L3 OPS</text>
+                <text x="574" y="92" text-anchor="middle" fill="#94A3B8" font-family="Geist, sans-serif" font-size="10">Host Isolation</text>
+                <text x="574" y="110" text-anchor="middle" fill="#94A3B8" font-family="Geist, sans-serif" font-size="10">Root Cause (RCA)</text>
+                <text x="574" y="128" text-anchor="middle" fill="#94A3B8" font-family="Geist, sans-serif" font-size="10">Remediation</text>
+              </g>
+              <text x="320" y="182" text-anchor="middle" fill="#64748B" font-family="Geist Mono, monospace" font-size="10">SELECT A STAGE ABOVE TO INSPECT OPERATIONAL EXECUTION</text>
+            </svg>
+          </div>
 
-    <!-- =====================================================================
-         VIEW 04: CREDENTIALS, EDUCATION & ACTIVE GROWTH TRACK
-         ===================================================================== -->
-    <section id="view-credentials" class="view-panel hidden space-y-10">
-      <div class="border-b border-white/[0.08] pb-5">
-        <span class="text-xs font-mono uppercase tracking-wider text-cyan-400">Chapter 04 · Academic &amp; Verified Standing</span>
-        <h2 class="text-2xl sm:text-3xl font-semibold text-white mt-1">Education, Certifications &amp; Active Study Track</h2>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <!-- Education (6 Cols) -->
-        <div class="lg:col-span-6 space-y-4">
-          <h3 class="text-sm font-mono uppercase tracking-wider text-slate-400">Academic Degrees</h3>
-
-          <div class="tilt-card spotlight-card p-6 rounded-2xl space-y-2">
-            <div class="flex items-center justify-between text-xs font-mono">
-              <span class="text-cyan-400">Master of Technology (M.Tech)</span>
-              <span class="text-slate-400">Aug 2019 – Jun 2021</span>
-            </div>
-            <h4 class="text-lg font-semibold text-white">M.Tech in Cyber Security</h4>
-            <p class="text-sm text-slate-300">National Forensic Sciences University (NFSU / Formerly GFSU)</p>
-            <p class="text-xs text-slate-400 leading-relaxed pt-1">
-              Completed hands-on defensive and forensic training inside the NFSU Cyber Range environment covering secure network architecture, malware reverse engineering, and vulnerability assessment.
+          <div id="workflow-detail" class="lg:col-span-5 rounded-xl bg-obsidian/85 border border-cyan-400/20 p-5 space-y-2">
+            <div id="workflow-badge" class="text-[11px] font-mono text-cyan-300 uppercase">STAGE 01 // FLEET ROLLOUT &amp; POLICY</div>
+            <h4 id="workflow-title" class="text-base font-semibold text-white">Cyber 2.0 Rollout, Zero-Day Whitelisting &amp; SMB Guard</h4>
+            <p id="workflow-desc" class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Rolled out and administered Cyber 2.0 EDR across 10+ enterprise environments covering 6,000+ hybrid endpoints, enforcing built-in zero-day/behavioral whitelisting and SMB shared folder protection to prevent unauthorized execution and protect shared network drives.
             </p>
           </div>
+        </div>
+      </div>
 
-          <div class="tilt-card spotlight-card p-6 rounded-2xl space-y-2">
-            <div class="flex items-center justify-between text-xs font-mono">
-              <span class="text-slate-400">Bachelor of Technology (B.Tech)</span>
-              <span class="text-slate-400">2011 – 2015</span>
-            </div>
-            <h4 class="text-lg font-semibold text-white">B.Tech in Computer Science &amp; Engineering (CSE)</h4>
-            <p class="text-sm text-slate-300">Dadi Institute of Engineering &amp; Technology (DIET)</p>
+      <!-- Interactive EDR Containment Simulator -->
+      <div class="tilt-card spotlight-card mobile-spotlight rounded-2xl bg-surface/85 border border-cyan-400/25 p-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-white/[0.07]">
+          <div>
+            <span class="text-[11px] font-mono uppercase tracking-wider text-cyan-400">Interactive Simulation · Live Endpoint Defense</span>
+            <h3 class="text-lg font-semibold text-white mt-0.5">EDR Policy &amp; Threat Containment Simulator</h3>
+            <p class="text-xs text-slate-400 mt-0.5">Compare an unverified binary touching an SMB share under a Cyber 2.0 hardened policy vs. an unprotected baseline.</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              id="sim-mode-btn"
+              data-hardened="true"
+              class="px-3.5 py-2 rounded-lg text-xs font-mono bg-cyan-400/15 hover:bg-cyan-400/25 border border-cyan-400/40 text-cyan-200 transition-colors"
+            >
+              Mode: Cyber 2.0 Hardened (Toggle)
+            </button>
+            <button
+              type="button"
+              id="sim-run-btn"
+              class="px-4 py-2 rounded-lg text-xs font-mono font-semibold bg-cyan-400 text-slate-950 hover:bg-cyan-300 transition-colors"
+            >
+              ▶ Simulate Execution
+            </button>
           </div>
         </div>
 
-        <!-- Certifications & Active Upskilling (6 Cols) -->
-        <div class="lg:col-span-6 space-y-4">
-          <h3 class="text-sm font-mono uppercase tracking-wider text-slate-400">Verified Certifications &amp; Active Study</h3>
+        <div id="sim-console" class="mt-4 rounded-xl bg-obsidian border border-white/[0.08] p-4 font-mono text-xs space-y-2 min-h-[156px]">
+          <div class="text-slate-400">[READY] Click "Simulate Execution" to trace MD5 hashing, VirusTotal check, SMB protection, SIEM forwarding, and L2/L3 containment.</div>
+        </div>
+      </div>
 
-          <div class="tilt-card spotlight-card p-6 rounded-2xl space-y-4">
-            <div class="flex items-center justify-between border-b border-white/[0.08] pb-3">
+      <!-- Role Timeline -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        <article class="lg:col-span-8 tilt-card spotlight-card mobile-spotlight rounded-2xl bg-surface/80 border border-white/[0.08] p-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-white/[0.07]">
+            <div>
+              <h3 class="text-lg font-semibold text-white">Cybersecurity Professional Services Engineer &amp; EDR Specialist</h3>
+              <div class="text-sm text-cyan-300 font-medium">Cyber 2.0</div>
+            </div>
+            <span class="font-mono text-xs px-3 py-1 rounded-full bg-cyan-400/10 border border-cyan-400/25 text-cyan-200 self-start sm:self-auto">
+              Dec 2021 – Present
+            </span>
+          </div>
+          <ul class="mt-4 space-y-2.5 text-xs sm:text-sm text-slate-300 leading-relaxed list-disc pl-5">
+            <li>Deployed and managed <strong class="text-white">Cyber 2.0 EDR</strong> across <strong class="text-white">6,000+ hybrid servers and workstations</strong> spanning <strong class="text-white">10+ enterprise client environments</strong>.</li>
+            <li>Configured built-in <strong class="text-white">zero-day/behavioral whitelisting</strong> and <strong class="text-white">SMB shared-folder protection</strong> to block unauthorized binaries and safeguard shared network folders.</li>
+            <li>Captured <strong class="text-white">new-application MD5 hashes</strong> and performed <strong class="text-white">VirusTotal reputation checks</strong> to speed up triage of unknown executables.</li>
+            <li>Configured <strong class="text-white">IP/Port log forwarding</strong> to client SIEM collectors for centralized visibility and SOC alerting.</li>
+            <li>Led <strong class="text-white">L2/L3 incident containment, root-cause analysis (RCA), and remediation</strong> across endpoint alerts.</li>
+          </ul>
+        </article>
+
+        <article class="lg:col-span-4 tilt-card spotlight-card mobile-spotlight rounded-2xl bg-surface/80 border border-white/[0.08] p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 pb-3 border-b border-white/[0.07]">
               <div>
-                <h4 class="text-sm font-semibold text-white">Splunk 7.x Fundamentals (Part 1)</h4>
-                <p class="text-xs text-slate-400">Issued by Splunk</p>
+                <h3 class="text-base font-semibold text-white">Operations &amp; Service Supervisor</h3>
+                <div class="text-xs text-slate-300 font-medium">Heywalle</div>
               </div>
-              <span class="px-2.5 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/30 text-emerald-300 text-[11px] font-mono">Verified</span>
+              <span class="font-mono text-xs px-2.5 py-0.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-slate-300">
+                2018 – 2019
+              </span>
             </div>
+            <p class="mt-4 text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Directed daily service operations, escalation workflows, and SLA coordination—establishing structured operational execution prior to specializing in enterprise cybersecurity.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
 
-            <div class="flex items-center justify-between border-b border-white/[0.08] pb-3">
-              <div>
-                <h4 class="text-sm font-semibold text-white">Autopsy Digital Forensics Certification</h4>
-                <p class="text-xs text-slate-400">Issued by Basis Technology</p>
-              </div>
-              <span class="px-2.5 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/30 text-emerald-300 text-[11px] font-mono">Verified</span>
-            </div>
+    <!-- ==================== 03. SKILLS & INVESTIGATION LABS ==================== -->
+    <section id="skills" data-section-id="skills" class="scroll-mt-24 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-white/[0.08] pb-4">
+        <div>
+          <div class="text-xs font-mono text-cyan-400">03 // TECHNICAL STACK &amp; FORENSIC LABS</div>
+          <h2 class="text-2xl sm:text-3xl font-semibold text-white mt-0.5">Skills &amp; Investigation Labs</h2>
+        </div>
+        <div class="text-xs font-mono text-slate-400">EDR · SIEM · Reverse Engineering · VAPT</div>
+      </div>
 
-            <!-- Active Study Track -->
-            <div class="pt-1 space-y-3">
-              <span class="text-xs font-mono uppercase tracking-wider text-cyan-400 block">Active Certification &amp; Upskilling Track</span>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="tilt-card spotlight-card mobile-spotlight rounded-2xl bg-surface/80 border border-white/[0.08] p-5">
+          <div class="text-xs font-mono text-cyan-400 mb-2">ENDPOINT &amp; SIEM</div>
+          <h3 class="text-base font-semibold text-white mb-3">EDR &amp; Log Telemetry</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/[0.04] border border-white/[0.08] text-slate-200">Cyber 2.0 EDR</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/[0.04] border border-white/[0.08] text-slate-200">Zero-Day Whitelisting</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/[0.04] border border-white/[0.08] text-slate-200">SMB Share Guard</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/[0.04] border border-white/[0.08] text-slate-200">MD5 + VirusTotal</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/[0.04] border border-white/[0.08] text-slate-200">IP/Port SIEM Forwarding</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/[0.04] border border-white/[0.08] text-slate-200">Splunk 7.x</span>
+          </div>
+        </div>
 
-              <div class="p-3.5 rounded-xl bg-white/[0.03] border border-cyan-400/20 flex items-center justify-between gap-3">
-                <div>
-                  <h5 class="text-sm font-semibold text-white">Microsoft SC-200: Security Operations Analyst</h5>
-                  <p class="text-xs text-slate-400">Expanding threat hunting &amp; XDR/SIEM detection engineering</p>
-                </div>
-                <span class="px-2.5 py-1 rounded-full bg-cyan-400/10 border border-cyan-400/30 text-cyan-300 text-[11px] font-mono shrink-0">In Progress</span>
-              </div>
+        <div class="tilt-card spotlight-card mobile-spotlight rounded-2xl bg-surface/80 border border-white/[0.08] p-5">
+          <div class="text-xs font-mono text-cyan-400 mb-2">FORENSICS &amp; REVERSE ENG</div>
+          <h3 class="text-base font-semibold text-white mb-3">Malware &amp; Disk Analysis</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-cyan-400/10 border border-cyan-400/25 text-cyan-200">IDA Pro</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-cyan-400/10 border border-cyan-400/25 text-cyan-200">Procmon</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-cyan-400/10 border border-cyan-400/25 text-cyan-200">Wireshark</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-cyan-400/10 border border-cyan-400/25 text-cyan-200">Autopsy</span>
+          </div>
+        </div>
 
-              <div class="p-3.5 rounded-xl bg-white/[0.03] border border-cyan-400/20 flex items-center justify-between gap-3">
-                <div>
-                  <h5 class="text-sm font-semibold text-white">Qualys Vulnerability Management &amp; EDR</h5>
-                  <p class="text-xs text-slate-400">Continuous vulnerability posture &amp; multi-platform EDR correlation</p>
-                </div>
-                <span class="px-2.5 py-1 rounded-full bg-cyan-400/10 border border-cyan-400/30 text-cyan-300 text-[11px] font-mono shrink-0">In Progress</span>
-              </div>
-            </div>
+        <div class="tilt-card spotlight-card mobile-spotlight rounded-2xl bg-surface/80 border border-white/[0.08] p-5">
+          <div class="text-xs font-mono text-cyan-400 mb-2">SCANNING &amp; WEB VAPT</div>
+          <h3 class="text-base font-semibold text-white mb-3">Exposure &amp; App Security</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-indigo-500/10 border border-indigo-400/25 text-indigo-200">Burp Suite</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-indigo-500/10 border border-indigo-400/25 text-indigo-200">Nmap</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-indigo-500/10 border border-indigo-400/25 text-indigo-200">Nessus</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-indigo-500/10 border border-indigo-400/25 text-indigo-200">OWASP Top 10</span>
           </div>
         </div>
       </div>
 
-      <!-- Clean Final Sign-Off Strip (Zero Duplicate Button Clutter) -->
-      <div class="tilt-card spotlight-card rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div class="space-y-1">
-          <h3 class="text-lg font-semibold text-white">Thank you for reviewing my dossier.</h3>
-          <p class="text-xs sm:text-sm text-slate-400">
-            Visakhapatnam, India · Open to Senior EDR, Endpoint Security &amp; SOC Engineering opportunities.
-          </p>
+      <!-- Lab Case File Inspector -->
+      <div class="tilt-card spotlight-card mobile-spotlight rounded-2xl bg-surface/80 border border-white/[0.08] p-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-white/[0.07]">
+          <div>
+            <span class="text-[11px] font-mono uppercase tracking-wider text-cyan-400">Investigation Case Files</span>
+            <h3 class="text-lg font-semibold text-white mt-0.5">Malware Research, Visualization &amp; VAPT Labs</h3>
+          </div>
+          <div id="lab-selector" class="flex flex-wrap gap-2">
+            <button type="button" data-lab="emotet-remcos" class="lab-btn active px-3 py-1.5 rounded-lg text-xs font-mono border transition-all">Emotet &amp; Remcos Case File</button>
+            <button type="button" data-lab="malware-vis" class="lab-btn px-3 py-1.5 rounded-lg text-xs font-mono border transition-all">Malware Visualization</button>
+            <button type="button" data-lab="owasp-lab" class="lab-btn px-3 py-1.5 rounded-lg text-xs font-mono border transition-all">OWASP Top 10 &amp; Recon</button>
+          </div>
         </div>
-        <div class="flex items-center gap-3 no-print">
-          <button data-view-target="overview" class="view-nav-trigger px-4 py-2 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 text-xs font-semibold transition">
-            Back to Overview ↑
-          </button>
+
+        <div id="lab-dossier" class="mt-5 grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-8 space-y-3">
+            <div class="flex flex-wrap items-center gap-2">
+              <span id="lab-tag" class="px-2.5 py-0.5 rounded font-mono text-[11px] bg-cyan-400/15 border border-cyan-400/30 text-cyan-200">MALWARE &amp; RAT FORENSICS</span>
+              <span id="lab-tools" class="font-mono text-xs text-slate-400">IDA Pro · Procmon · Wireshark</span>
+            </div>
+            <h4 id="lab-title" class="text-xl font-semibold text-white">Emotet &amp; Remcos RAT Analysis</h4>
+            <p id="lab-summary" class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Investigated execution chains, persistence behaviors, and host/network indicators associated with Emotet and Remcos samples using Procmon for process/file/registry tracing, IDA Pro for binary inspection, and Wireshark for traffic analysis.
+            </p>
+            <div id="lab-highlights" class="pt-1 space-y-1.5 text-xs sm:text-sm text-slate-300">
+              <div>• Traced child process creation, file/registry modifications, and persistence hooks in Procmon.</div>
+              <div>• Examined binary structure and routines in IDA Pro alongside network behavior in Wireshark.</div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-4 rounded-xl bg-obsidian/90 border border-white/[0.07] p-4 flex flex-col justify-between">
+            <div>
+              <div class="text-[11px] font-mono uppercase text-cyan-400 mb-2">Enterprise EDR Mapping</div>
+              <p id="lab-defense" class="text-xs text-slate-300 leading-relaxed">
+                Connects malware internals directly to behavioral whitelisting rules, MD5/VirusTotal reputation checks, SMB share guards, and rapid L2/L3 containment.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-white/[0.06] text-[11px] font-mono text-slate-400">
+              Ready for specific Emotet &amp; Remcos lab notes
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- ==================== 04. CREDENTIALS & GROWTH TRACK ==================== -->
+    <section id="credentials" data-section-id="credentials" class="scroll-mt-24 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-white/[0.08] pb-4">
+        <div>
+          <div class="text-xs font-mono text-cyan-400">04 // EDUCATION, CERTIFICATIONS &amp; UPSKILLING</div>
+          <h2 class="text-2xl sm:text-3xl font-semibold text-white mt-0.5">Credentials &amp; Growth Track</h2>
+        </div>
+        <div class="text-xs font-mono text-slate-400">NFSU · DIET · SC-200 · Qualys</div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="tilt-card spotlight-card mobile-spotlight rounded-2xl bg-surface/80 border border-white/[0.08] p-6 space-y-4">
+          <div class="text-xs font-mono text-cyan-400">EDUCATION</div>
+          <div class="rounded-xl bg-white/[0.025] border border-white/[0.06] p-4">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="text-base font-semibold text-white">M.Tech in Cyber Security</h3>
+              <span class="font-mono text-xs text-cyan-300">2019 – 2021</span>
+            </div>
+            <div class="text-xs sm:text-sm text-slate-300 mt-1">National Forensic Sciences University (NFSU)</div>
+          </div>
+          <div class="rounded-xl bg-white/[0.025] border border-white/[0.06] p-4">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="text-base font-semibold text-white">B.Tech in Computer Science &amp; Engineering</h3>
+              <span class="font-mono text-xs text-slate-400">2011 – 2015</span>
+            </div>
+            <div class="text-xs sm:text-sm text-slate-300 mt-1">Dadi Institute of Engineering and Technology (DIET)</div>
+          </div>
+        </div>
+
+        <div class="tilt-card spotlight-card mobile-spotlight rounded-2xl bg-surface/80 border border-white/[0.08] p-6 space-y-4">
+          <div class="text-xs font-mono text-cyan-400">CERTIFICATIONS &amp; ACTIVE STUDY</div>
+          <div class="space-y-2.5">
+            <div class="rounded-xl bg-emerald-500/[0.05] border border-emerald-400/20 p-3.5 flex items-center justify-between gap-3">
+              <div>
+                <div class="text-sm font-semibold text-white">Splunk 7.x Fundamentals</div>
+                <div class="text-xs text-slate-400">Search, SPL telemetry queries &amp; SIEM workflows</div>
+              </div>
+              <span class="font-mono text-[11px] px-2.5 py-0.5 rounded bg-emerald-400/15 text-emerald-200 shrink-0">Verified</span>
+            </div>
+            <div class="rounded-xl bg-emerald-500/[0.05] border border-emerald-400/20 p-3.5 flex items-center justify-between gap-3">
+              <div>
+                <div class="text-sm font-semibold text-white">Autopsy Digital Forensics</div>
+                <div class="text-xs text-slate-400">Disk forensics, timelines &amp; evidence recovery</div>
+              </div>
+              <span class="font-mono text-[11px] px-2.5 py-0.5 rounded bg-emerald-400/15 text-emerald-200 shrink-0">Verified</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+            <div class="rounded-xl bg-cyan-400/[0.06] border border-cyan-400/25 p-3.5">
+              <div class="text-xs font-mono text-cyan-300">IN PROGRESS</div>
+              <div class="text-sm font-semibold text-white mt-0.5">Microsoft SC-200</div>
+              <div class="text-xs text-slate-300">Security Operations Analyst</div>
+            </div>
+            <div class="rounded-xl bg-indigo-500/[0.08] border border-indigo-400/25 p-3.5">
+              <div class="text-xs font-mono text-indigo-300">IN PROGRESS</div>
+              <div class="text-sm font-semibold text-white mt-0.5">Qualys VM &amp; EDR</div>
+              <div class="text-xs text-slate-300">Vulnerability &amp; Endpoint Defense</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <!-- Apple-Style Frosted Glass Bottom Dock (Mobile & Tablet Only — Hidden on Desktop lg+) -->
+  <nav id="apple-glass-dock" aria-label="Mobile and Tablet Glass Navigation Dock" class="no-print lg:hidden fixed bottom-3.5 inset-x-0 z-40 flex justify-center px-3 pointer-events-none">
+    <div class="apple-dock pointer-events-auto flex items-center gap-1.5 sm:gap-2 px-2.5 py-2 rounded-3xl">
+      <a href="#overview" data-section="overview" class="dock-item active flex flex-col sm:flex-row items-center gap-1 sm:gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-2xl text-[11px] sm:text-xs font-medium transition-all">
+        <span class="font-mono text-[10px] opacity-80">01</span>
+        <span>Overview</span>
+      </a>
+      <a href="#experience" data-section="experience" class="dock-item flex flex-col sm:flex-row items-center gap-1 sm:gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-2xl text-[11px] sm:text-xs font-medium transition-all">
+        <span class="font-mono text-[10px] opacity-80">02</span>
+        <span>Experience</span>
+      </a>
+      <a href="#skills" data-section="skills" class="dock-item flex flex-col sm:flex-row items-center gap-1 sm:gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-2xl text-[11px] sm:text-xs font-medium transition-all">
+        <span class="font-mono text-[10px] opacity-80">03</span>
+        <span>Labs</span>
+      </a>
+      <a href="#credentials" data-section="credentials" class="dock-item flex flex-col sm:flex-row items-center gap-1 sm:gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-2xl text-[11px] sm:text-xs font-medium transition-all">
+        <span class="font-mono text-[10px] opacity-80">04</span>
+        <span>Credentials</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Command Palette Modal (Ctrl+K / Cmd+K) -->
+  <div id="command-palette" class="no-print hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-start justify-center pt-20 px-4" role="dialog" aria-modal="true" aria-label="Quick Navigation Command Palette">
+    <div class="w-full max-w-lg rounded-2xl apple-glass shadow-2xl overflow-hidden">
+      <div class="flex items-center gap-3 px-4 py-3 border-b border-white/[0.1]">
+        <svg class="w-4 h-4 text-cyan-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path stroke-linecap="round" d="M21 21l-4.35-4.35"></path>
+        </svg>
+        <input
+          id="palette-input"
+          type="text"
+          placeholder="Jump to Overview, Experience, Simulator, Labs, or PDF..."
+          class="w-full bg-transparent text-sm text-white placeholder-slate-400 focus:outline-none"
+        />
+        <button type="button" id="close-palette-btn" class="font-mono text-xs text-slate-300 hover:text-white px-2 py-0.5 rounded bg-white/[0.08]">ESC</button>
+      </div>
+      <div id="palette-results" class="max-h-72 overflow-y-auto p-2 space-y-1 text-xs"></div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="no-print fixed top-20 right-4 z-50 -translate-y-4 opacity-0 pointer-events-none transition-all duration-300 rounded-xl apple-glass px-4 py-2.5 text-xs font-mono text-cyan-200 shadow-xl">
+    <span id="toast-text">Action completed</span>
+  </div>
 
   <script type="module" src="./src/main.js"></script>
 </body>

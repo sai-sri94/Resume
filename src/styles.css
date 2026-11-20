@@ -1,142 +1,299 @@
-/* Architectural Grid & Subtle Film Grain */
-.bg-arch-grid {
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 48px 48px;
-  -webkit-mask-image: radial-gradient(ellipse 88% 70% at 50% 15%, #000 35%, transparent 100%);
-  mask-image: radial-gradient(ellipse 88% 70% at 50% 15%, #000 35%, transparent 100%);
+:root {
+  --bg-obsidian: #05070d;
+  --bg-surface: #0a0f1a;
+  --cyan-pulse: #22d3ee;
+  --indigo-edge: #6366f1;
 }
 
-.bg-noise {
+html,
+body {
+  background-color: var(--bg-obsidian);
+  color: #f1f5f9;
+}
+
+/* Living Endpoint Telemetry Canvas */
+#telemetry-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Atmospheric Depth Layers */
+.ambient-atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 15% 12%, rgba(34, 211, 238, 0.11), transparent 42%),
+    radial-gradient(circle at 85% 20%, rgba(99, 102, 241, 0.12), transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(14, 165, 233, 0.07), transparent 50%);
+}
+
+/* Subtle Grain Texture */
+.noise-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-.text-balance { text-wrap: balance; }
-.text-pretty { text-wrap: pretty; }
-
-/* Luminous Hero Headline Gradient */
-.hero-gradient-text {
-  background: linear-gradient(95deg, #FFFFFF 0%, #CBD5E1 65%, #38BDF8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Apple-Style Frosted Glass Surfaces & Dock */
+.apple-glass {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.09) 0%, rgba(15, 23, 42, 0.68) 100%);
+  backdrop-filter: blur(24px) saturate(165%);
+  -webkit-backdrop-filter: blur(24px) saturate(165%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.18),
+    0 12px 32px -8px rgba(0, 0, 0, 0.65);
 }
 
-/* Machined Obsidian Glass Surface + 3D Perspective Tilt */
-.tilt-card {
-  background-color: #0B101B;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+.apple-dock {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(10, 15, 28, 0.76) 100%);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow:
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
-    0 14px 36px -14px rgba(0, 0, 0, 0.75);
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.25),
+    0 18px 44px -10px rgba(0, 0, 0, 0.8),
+    0 0 28px rgba(34, 211, 238, 0.09);
+}
+
+.dock-item {
+  color: #cbd5e1;
+  transform-origin: bottom center;
+}
+
+.dock-item:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.09);
+  transform: translateY(-3px) scale(1.06);
+}
+
+.dock-item.active {
+  color: #67e8f9;
+  background: rgba(34, 211, 238, 0.18);
+  border: 1px solid rgba(103, 232, 249, 0.36);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 0 18px rgba(34, 211, 238, 0.18);
+  transform: translateY(-2px) scale(1.04);
+}
+
+.top-nav-pill {
+  color: #cbd5e1;
+}
+
+.top-nav-pill:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.top-nav-pill.active {
+  color: #cffafe;
+  background: rgba(34, 211, 238, 0.16);
+  border: 1px solid rgba(103, 232, 249, 0.32);
+}
+
+/* Dual-Layer Desktop Cursor */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  margin-left: -3.5px;
+  margin-top: -3.5px;
+  border-radius: 9999px;
+  background: #67e8f9;
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.9);
+  pointer-events: none;
+  z-index: 60;
+  transform: translate3d(-100px, -100px, 0);
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  margin-left: -16px;
+  margin-top: -16px;
+  border-radius: 9999px;
+  border: 1px solid rgba(34, 211, 238, 0.45);
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 59;
+  transform: translate3d(-100px, -100px, 0);
+  transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease;
+}
+
+body.cursor-active .cursor-ring {
+  width: 44px;
+  height: 44px;
+  margin-left: -22px;
+  margin-top: -22px;
+  border-color: rgba(103, 232, 249, 0.85);
+}
+
+/* 3D Perspective Card & Spotlight Sweep */
+.tilt-card {
   transform-style: preserve-3d;
-  transition:
-    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+  transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .spotlight-card {
   position: relative;
   overflow: hidden;
+  --spot-x: 50%;
+  --spot-y: 20%;
 }
 
 .spotlight-card::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(
-    360px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(34, 211, 238, 0.15),
-    rgba(59, 130, 246, 0.04) 45%,
-    transparent 80%
-  );
-  opacity: 0;
-  transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   pointer-events: none;
-  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(
+    420px circle at var(--spot-x) var(--spot-y),
+    rgba(34, 211, 238, 0.14),
+    rgba(99, 102, 241, 0.05) 45%,
+    transparent 75%
+  );
 }
 
-@media (hover: hover) {
-  .spotlight-card:hover::before {
-    opacity: 1;
-  }
-  .tilt-card:hover {
-    border-color: rgba(34, 211, 238, 0.38);
-  }
-}
-
-.spotlight-card.touch-lit::before,
-.spotlight-card.scroll-lit::before {
+.spotlight-card:hover::before {
   opacity: 1;
 }
 
-.spotlight-card.scroll-lit {
-  border-color: rgba(34, 211, 238, 0.38);
-}
-
-.magnetic-el {
-  will-change: transform;
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* Smooth Multi-View Entrance Animation */
-.view-panel {
-  animation: viewReveal 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-@keyframes viewReveal {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
+/* Mobile Scroll-Driven Spotlight Activation */
+@media (max-width: 767px) {
+  .mobile-spotlight.is-in-view {
+    border-color: rgba(34, 211, 238, 0.38) !important;
+    box-shadow: 0 10px 30px -10px rgba(34, 211, 238, 0.18);
   }
-  to {
+
+  .mobile-spotlight.is-in-view::before {
     opacity: 1;
-    transform: translateY(0);
+    animation: mobileSweep 1.2s ease forwards;
   }
 }
 
-/* Reduced Motion Respect */
+@keyframes mobileSweep {
+  0% {
+    --spot-x: 15%;
+    --spot-y: 15%;
+  }
+  100% {
+    --spot-x: 82%;
+    --spot-y: 78%;
+  }
+}
+
+/* Touch Tap Ripple */
+.touch-ripple {
+  position: fixed;
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  margin-top: -12px;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(34, 211, 238, 0.8);
+  background: rgba(34, 211, 238, 0.14);
+  pointer-events: none;
+  z-index: 65;
+  animation: rippleExpand 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes rippleExpand {
+  0% {
+    transform: scale(0.4);
+    opacity: 0.95;
+  }
+  100% {
+    transform: scale(3.4);
+    opacity: 0;
+  }
+}
+
+.workflow-tab,
+.lab-btn {
+  background: rgba(255, 255, 255, 0.025);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+}
+
+.workflow-tab.active,
+.lab-btn.active {
+  background: rgba(34, 211, 238, 0.16);
+  border-color: rgba(34, 211, 238, 0.45);
+  color: #cffafe;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
+  .tilt-card,
+  .spotlight-card::before,
+  .touch-ripple,
+  .cursor-dot,
+  .cursor-ring,
+  .dock-item {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
   }
 }
 
-/* Complete Multi-Chapter ATS Print / Save Resume PDF Mode */
+/* ATS-Friendly Print / Save as PDF Stylesheet */
 @media print {
-  .no-print, #cursor-aura, #cursor-ring, #cursor-dot, .bg-arch-grid, .bg-noise {
+  .no-print,
+  #telemetry-canvas,
+  .ambient-atmosphere,
+  .noise-layer,
+  #cursor-dot,
+  #cursor-ring,
+  #apple-glass-dock,
+  #command-palette,
+  #toast {
     display: none !important;
   }
+
   body {
     background: #ffffff !important;
     color: #0f172a !important;
+    padding: 0 !important;
+    font-size: 11pt !important;
   }
-  main {
-    padding-top: 0 !important;
+
+  #app-main {
+    max-width: 100% !important;
+    padding: 0 !important;
   }
-  .view-panel {
-    display: block !important;
-    opacity: 1 !important;
-    transform: none !important;
-    margin-bottom: 2rem !important;
+
+  section {
     page-break-inside: avoid;
+    margin-bottom: 18pt !important;
   }
-  .hero-gradient-text {
-    background: none !important;
-    -webkit-text-fill-color: #0f172a !important;
-    color: #0f172a !important;
-  }
-  .tilt-card {
+
+  .tilt-card,
+  .spotlight-card,
+  article,
+  section > div {
     background: #ffffff !important;
+    color: #0f172a !important;
     border: 1px solid #cbd5e1 !important;
     box-shadow: none !important;
     transform: none !important;
   }
-  .text-white, .text-slate-200, .text-slate-300, .text-slate-400 {
-    color: #1e293b !important;
+
+  h1, h2, h3, h4, strong, p, li, span, div, a {
+    color: #0f172a !important;
   }
 }
