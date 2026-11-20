@@ -1,3 +1,21 @@
+/*
+// === START: RIGHT-CLICK & F12 BLOCK (disabled while testing) ===
+document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+document.addEventListener('keydown', (e) => {
+  const key = (e.key || '').toUpperCase();
+  if (
+    e.key === 'F12' ||
+    ((e.ctrlKey || e.metaKey) && e.shiftKey && ['I', 'J', 'C'].includes(key)) ||
+    (e.metaKey && e.altKey && ['I', 'J', 'C'].includes(key)) ||
+    ((e.ctrlKey || e.metaKey) && ['U', 'S'].includes(key))
+  ) {
+    e.preventDefault();
+  }
+});
+// === END: RIGHT-CLICK & F12 BLOCK ===
+*/
+
 document.addEventListener('DOMContentLoaded', () => {
   const SECTION_IDS = ['overview', 'experience', 'skills', 'credentials'];
   const sections = SECTION_IDS.map((id) => document.getElementById(id)).filter(Boolean);
